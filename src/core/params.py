@@ -1,5 +1,6 @@
 from drf_yasg import openapi
 
+
 date_from = openapi.Parameter(
     'date_from',
     in_=openapi.IN_QUERY,

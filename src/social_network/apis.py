@@ -1,9 +1,10 @@
-from core.params import date_from, date_to
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import AllowAny, IsAuthenticated
+
+from core.params import date_from, date_to
 
 from .serializers import (
     SignUpSerializer, ActivitySerializer,
@@ -26,9 +27,9 @@ class SignUpApi(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(
-                {'result': 1, 'success': True},
-                status=status.HTTP_201_CREATED
-            )
+            {'result': 1, 'success': True},
+            status=status.HTTP_201_CREATED
+        )
 
 
 class ActivityApi(APIView):
@@ -48,9 +49,9 @@ class PostCreateApi(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(
-                {'result': 1, 'success': True},
-                status=status.HTTP_201_CREATED
-            )
+            {'result': 1, 'success': True},
+            status=status.HTTP_201_CREATED
+        )
 
 
 class LikeApi(APIView):
@@ -81,6 +82,7 @@ class UnLikeApi(APIView):
 
 class LikeAnaliticsApi(APIView):
     permission_classes = (IsAuthenticated, )
+
     @swagger_auto_schema(
         operation_description='User registration',
         manual_parameters=[
