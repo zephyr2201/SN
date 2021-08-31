@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
+    'drf_yasg',
     'rest_framework',
     'social_network',
 ]
@@ -62,6 +63,15 @@ TEMPLATES = [
         },
     },
 ]
+
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+    "SECURITY_DEFINITIONS": {
+        "api_key": {"type": "apiKey", "name": "Authorization", "in": "header"},
+    },
+    "DEEP_LINKING": True,
+}
+
 
 WSGI_APPLICATION = 'core.wsgi.application'
 

@@ -1,6 +1,8 @@
+from core.params import date_from, date_to
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from .serializers import (
@@ -15,6 +17,10 @@ from social_network.services.utils import post_like, post_unlike, update_user_re
 class SignUpApi(APIView):
     permission_classes = (AllowAny, )
 
+    @swagger_auto_schema(
+        operation_description='Registration',
+        request_body=SignUpSerializer
+    )
     def post(self, request):
         serializer = SignUpSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -55,9 +61,9 @@ class LikeApi(APIView):
         post = get_post(post_id)
         post_like(post, request.user)
         return Response(
-                {'result': 1, 'success': True},
-                status=status.HTTP_200_OK
-            )
+            {'result': 1, 'success': True},
+            status=status.HTTP_200_OK
+        )
 
 
 class UnLikeApi(APIView):
@@ -68,14 +74,19 @@ class UnLikeApi(APIView):
         post = get_post(post_id)
         post_unlike(post, request.user)
         return Response(
-                {'result': 1, 'success': True},
-                status=status.HTTP_200_OK
-            )
+            {'result': 1, 'success': True},
+            status=status.HTTP_200_OK
+        )
 
 
 class LikeAnaliticsApi(APIView):
     permission_classes = (IsAuthenticated, )
-
+    @swagger_auto_schema(
+        operation_description='User registration',
+        manual_parameters=[
+            date_from, date_to
+        ]
+    )
     def get(self, request):
         update_user_request(request.user)
         params = request.query_params
@@ -87,6 +98,6 @@ class LikeAnaliticsApi(APIView):
         data = serializer.data
         # print(data)
         return Response(
-                status=status.HTTP_200_OK,
-                data=data
-            )
+            status=status.HTTP_200_OK,
+            data=data
+        )
