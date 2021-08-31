@@ -1,15 +1,14 @@
 Django==3.1.6
-django-admin-search==0.3.6
 django-extensions==3.1.1
 django-filter==2.4.0
 django-fsm==2.7.1
 djangorestframework==3.12.2
+djangorestframework-simplejwt==4.7.2
 drf-base64==2.0
 drf-yasg==1.20.0
 factory-boy==3.2.0
 Faker==6.0.0
 flake8==3.9.0
-flower==0.9.7
 ipython==7.21.0
 ipython-genutils==0.2.0
 psycopg2-binary==2.8.6
