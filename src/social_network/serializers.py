@@ -39,7 +39,7 @@ class ActivitySerializer(serializers.Serializer):
         return date_str
 
     def get_last_request(self, obj):
-        date = obj.last_login.replace(tzinfo=pytz.UTC)
+        date = obj.last_request.replace(tzinfo=pytz.UTC)
         date_str = datetime.strftime(date, '%Y.%m.%d %H:%m:%S')
         return date_str
 

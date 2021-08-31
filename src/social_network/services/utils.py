@@ -16,9 +16,12 @@ logger = logging.getLogger(__name__)
 
 fake = faker.Faker()
 
+FILENAME = '/code/bot.json'
+
 
 def update_user_request(user):
     user.last_request = datetime.now().replace(tzinfo=pytz.UTC)
+    user.save()
 
 
 def post_like(post, user):
@@ -62,11 +65,12 @@ def create_likes(posts: List):
         for i in range(0, random.randint(1, users.count())):
             user = users[i]
             post.likes.add(user)
+            post.save()
             logger.warning(f'User:{user.username} like post-{post.id}')
 
 
 def start_bot():
-    with open('/code/bot.json', 'r') as f:
+    with open(FILENAME, 'r') as f:
         data = f.read()
 
     data = json.loads(data)
