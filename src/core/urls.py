@@ -17,8 +17,8 @@ schema_view = get_schema_view(
 )
 
 api_patterns = [
-    path('user/', include(user_patterns)),
-    path('post/', include(post_patterns)),
+    path('users/', include(user_patterns)),
+    path('posts/', include(post_patterns)),
 ]
 
 urlpatterns = [
