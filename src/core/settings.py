@@ -31,9 +31,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework_simplejwt',
-    'drf_yasg',
+    'django_extensions',
     'rest_framework',
     'social_network',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -64,14 +65,6 @@ TEMPLATES = [
     },
 ]
 
-SWAGGER_SETTINGS = {
-    "USE_SESSION_AUTH": False,
-    "SECURITY_DEFINITIONS": {
-        "api_key": {"type": "apiKey", "name": "Authorization", "in": "header"},
-    },
-    "DEEP_LINKING": True,
-}
-
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -97,14 +90,6 @@ REST_FRAMEWORK = {
     )
 }
 
-SIMPLE_JWT = {
-    # 'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
-    # 'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-    'UPDATE_LAST_LOGIN': True,
-    'AUTH_HEADER_TYPES': ('JWT',),
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -124,7 +109,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+    'AUTH_HEADER_TYPES': ('JWT',),
+}
 
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+    "SECURITY_DEFINITIONS": {
+        "api_key": {"type": "apiKey", "name": "Authorization", "in": "header"},
+    },
+    "DEEP_LINKING": True,
+}
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
