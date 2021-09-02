@@ -1,10 +1,11 @@
 from django.core.exceptions import ValidationError
 from django.db.models.aggregates import Count
+from django.db.models.query import QuerySet
 from .models import Like, Post
 from django.http import Http404
 
 
-def get_post(post_id):
+def get_post(post_id: int) -> Post:
     try:
         post = Post.objects.get(id=post_id)
     except Post.DoesNotExist:
@@ -12,7 +13,7 @@ def get_post(post_id):
     return post
 
 
-def like_analitics(date_from, date_to):
+def like_analitics(date_from: str, date_to: str) -> QuerySet:
     try:
         if date_from and date_to:
             return Like.objects.filter(

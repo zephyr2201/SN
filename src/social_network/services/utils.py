@@ -19,22 +19,22 @@ fake = faker.Faker()
 FILENAME = '/code/bot.json'
 
 
-def update_user_request(user):
+def update_user_request(user: User):
     user.last_request = datetime.now().replace(tzinfo=pytz.UTC)
     user.save()
 
 
-def post_like(post, user):
+def post_like(post: Post, user: User):
     post.likes.add(user)
     post.save()
 
 
-def post_unlike(post, user):
+def post_unlike(post: Post, user: User):
     post.likes.remove(user)
     post.save()
 
 
-def create_user():
+def create_user() -> User:
     username = fake.simple_profile()['username']
     password=fake.password()
     try:
@@ -48,7 +48,7 @@ def create_user():
     return user
 
 
-def create_posts(user: User, post_count: int):
+def create_posts(user: User, post_count: int) -> List:
     posts = []
     body = fake.paragraph(nb_sentences=5)
     for i in range(0, random.randint(1, post_count)):
